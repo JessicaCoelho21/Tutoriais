@@ -27,7 +27,7 @@ export default function Episode({ episode }: EpisodeProps) {
   return (
     <div className={styles.episode}>
       <div className={styles.thumbnailContainer}>
-        <Link href='/'>
+        <Link href="/">
           <button type="button">
             <img src="/arrow-left.svg" alt="Voltar" />
           </button>
@@ -59,8 +59,25 @@ export default function Episode({ episode }: EpisodeProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
+  const { data } = await api.get("episodes", {
+    params: {
+      _limit: 2,
+      _sort: "published_at",
+      _order: "desc",
+    },
+  });
+
+  const paths = data.map((episode) => {
+    return {
+      params: {
+        slug: episode.id,
+      },
+    };
+  });
+
   return {
-    paths: [],
+    paths,
+    //incremental static regeneration
     fallback: "blocking",
   };
 };
@@ -68,7 +85,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async (ctx) => {
   //ctx -> context
   const { slug } = ctx.params;
-
   const { data } = await api.get(`/episodes/${slug}`);
 
   const episode = {
@@ -89,6 +105,7 @@ export const getStaticProps: GetStaticProps = async (ctx) => {
     props: {
       episode,
     },
+
     revalidate: 60 * 60 * 24, //24 hours
   };
 };

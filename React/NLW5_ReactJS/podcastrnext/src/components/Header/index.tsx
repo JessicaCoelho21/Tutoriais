@@ -1,7 +1,8 @@
 import React from "react";
-import styles from "./styles.module.scss";
 import format from "date-fns/format";
 import pt from "date-fns/locale/pt";
+
+import styles from "./styles.module.scss";
 
 export function Header() {
   const currentDate = format(new Date(), "EEEEEE, d MMMM", {
