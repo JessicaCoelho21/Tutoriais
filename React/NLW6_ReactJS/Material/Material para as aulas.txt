@@ -1,0 +1,29 @@
+Geral: https://www.notion.so/NLW-Together-Conte-dos-complementares-ae22125e899549efb2d4e360b5ee5ca3
+
+https://www.notion.so/Material-para-as-aulas-eb0804e137154e7e8c31d56dea8af99b
+
+Aula 1 - Repositório
+https://github.com/rocketseat-education/nlw-06-reactjs/tree/aula01
+
+
+Aula 3 - Regras de autenticaçãi do Firebase
+{
+  "rules": {
+    "rooms": {
+      ".read": false,
+      ".write": "auth != null",
+      "$roomId": {
+        ".read": true,
+        ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)",
+        "questions": {
+          ".read": true,
+          ".write": "auth != null && (!data.exists() || data.parent().child('authorId').val() == auth.id)",
+          "likes": {
+            ".read": true,
+            ".write": "auth != null && (!data.exists() || data.child('authorId').val() == auth.id)",  
+          }
+        }
+      }
+    }
+  }
+}
