@@ -23,9 +23,13 @@ export const Home = () => {
     <div id="page-auth">
       <aside>
         <img src={illustrationImg} alt="Ilustração de perguntas e respostas" />
+
         {/*<strong>Crie salas de Q &amp; A em direto</strong>*/}
+
         <strong>Todas as perguntas têm uma resposta.</strong>
+
         {/*<p>Tire as dúvidas dos seus espetadores em tempo real</p>*/}
+        
         <p>Aprende e partilha o teu conhecimento com outras pessoas</p>
       </aside>
 

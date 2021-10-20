@@ -21,6 +21,7 @@ export const AuthContext = React.createContext({} as AuthContextType);
 export const AuthContextProvider = (props: AuthContextProviderProps) => {
     const [user, setUser] = React.useState<User>();
 
+    //De forma a termos o utilizador sempre com a sessão iniciada na aplicação, mesmo que ele atualize a página
     React.useEffect(() => {
       const unsubscribe = auth.onAuthStateChanged(user => {
         if(user) {
