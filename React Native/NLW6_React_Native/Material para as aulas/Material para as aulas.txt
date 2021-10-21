@@ -1,0 +1,48 @@
+https://www.notion.so/Material-para-as-aulas-a3f0ede387c0442b845b29d50a89686b
+
+Repositório: https://github.com/rodrigorgtic/gameplay-nlw-together
+
+Aula 1 - https://drive.google.com/drive/folders/1RJbqN6XWxz2Tlj3a3Qi0XLteR9pAirLW
+
+Aula 2 - https://drive.google.com/drive/folders/1fUWd9saKfjv9bkGdjdF28eNR7HmL35YW
+
+Aula 5 - https://gist.github.com/rodrigorgtic/ffb64d8f77108cd091835badac0ab58a
+
+{
+	"Basic React Native Component": {
+		"prefix": "rnbc",
+		"body": [
+			"import React from 'react';",
+			"",
+			"import {",
+			"  View",
+			"} from 'react-native';",
+			"",
+			"import { styles } from './styles';",
+			"",
+			"export function ${TM_DIRECTORY/^.+\\/(.*)$/$1/}(){",
+			"  return (",
+			"    <View>",
+			"",
+			"    </View>",
+			"  );",
+			"}"
+		],
+		"description": "Create the structure of a react native component"
+	},
+
+	"StyleSheet React Native Object": {
+		"prefix": "rnso",
+		"body": [
+			"import { StyleSheet } from 'react-native';",
+			"",
+			"export const styles = StyleSheet.create({",
+			"  container: {",
+			"    flex: 1,",			
+			"  }",			
+			"});"
+		],
+		"description": "Create a style object with Stylesheet to separate file."
+	}
+}
+

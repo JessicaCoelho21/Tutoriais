@@ -1,0 +1,65 @@
+https://www.notion.so/Material-para-as-aulas-73fe885c17c34f4d8116cc84ac14d434
+
+Repositório do Projeto - https://github.com/rocketseat-education/nlw-06-flutter
+
+Aula 3 - https://www.notion.so/22-06-Aula-03-Aprendendo-sobre-o-Firebase-f584fabf86094d89b39beaaf13870b00
+
+Instalação do Firebase - https://pub.dev/packages/google_sign_in
+			 https://pub.dev/packages/google_sign_in_web
+			 https://pub.dev/packages/shared_preferences
+
+Aula 4 - https://www.notion.so/23-06-Aula-04-Aprendendo-sobre-o-MLKIT-5456caf404874563816f0f7b58f61ac8
+
+Conteúdo técnico:
+- Adicionar package GoogleMLKit - https://pub.dev/packages/google_ml_kit
+- Adicionar package Camera - https://pub.dev/packages/camera
+- Adicionar package ImagePicker - https://pub.dev/packages/image_picker/install
+
+Aula 5 - https://www.notion.so/24-06-Aula-05-Finalizando-o-App-e-animando-621062a3880241608de1f628076d457a
+
+Conteúdo técnico:
+- Instalar package font_awesome_flutter - https://pub.dev/packages/font_awesome_flutter
+- Instalar package flutter_masked_text2 - https://pub.dev/packages/flutter_masked_text2
+
+- Criar validações:
+
+String? validateName(String? value) =>
+      value?.isEmpty ?? true ? "O nome não pode ser vazio" : null;
+  String? validateVencimento(String? value) =>
+      value?.isEmpty ?? true ? "A data de vencimento não pode ser vazio" : null;
+  String? validateValor(double value) =>
+      value == 0 ? "Insira um valor maior que R\$ 0,00" : null;
+  String? validateCodigo(String? value) =>
+      value?.isEmpty ?? true ? "O código do boleto não pode ser vazio" : null;
+
+- Criar BoletoTileWidget: Trailing:
+
+trailing: Text.rich(TextSpan(
+        text: "R\$ ",
+        style: TextStyles.trailingRegular,
+        children: [
+          TextSpan(
+            text: "${data.value!.toStringAsFixed(2)}",
+            style: TextStyles.trailingBold,
+          ),
+        ],
+      )),
+
+- MeusBoletosPage(): BoletoInfoWidget():
+
+Text.rich(TextSpan(
+            text: "Você tem ",
+            style: TextStyles.captionBackground,
+            children: [
+              TextSpan(
+                text: "$size boletos\n",
+                style: TextStyles.captionBoldBackground,
+              ),
+              TextSpan(
+                text: "cadastrados para pagar",
+                style: TextStyles.captionBackground,
+              ),
+            ],
+          ))
+
+- Adicionar package animated_card - https://pub.dev/packages/animated_card
