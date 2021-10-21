@@ -5,20 +5,29 @@
   background: #835afd;
   color: #fff;
   padding: 0 32px;
+
   display: flex;
   justify-content: center;
   align-items: center;
+
   cursor: pointer;
   border: 0;
+
   transition: filter 0.2s;
 
   img {
-    margin-right: 8px;
+      margin-right: 8px;
   }
 
-  //se o botão não estiver disabled, aplica o escurecimento de 10%
+  &.outlined {
+      background: #FFF;
+      border: 1px solid #835afd;
+      color: #835afd;
+  }
+  
+//se o botão não estiver disabled, aplica o escurecimento de 10%
   &:not(:disabled):hover {
-    filter: brightness(0.9);
+      filter: brightness(0.9);
   }
 
   &:disabled {

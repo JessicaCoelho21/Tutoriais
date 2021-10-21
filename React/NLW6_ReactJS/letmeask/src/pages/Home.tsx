@@ -31,9 +31,15 @@ export const Home = () => {
     //vai à bd obter todos os id's de todas as salas
     const roomRef = await database.ref(`rooms/${roomCode}`).get();
 
-    //se o id introduzido no form não existir, lança erro
+    //se o id introduzido no form não existir, lança um alerta
     if(!roomRef.exists()) {
       alert('Room does not exist.');
+      return;
+    }
+
+    //se a sala com o id roomRef tiver na base de dados o campo endedAt, lança um alerta
+    if (roomRef.val().endedAt) {
+      alert('Room already closed');
       return;
     }
 
