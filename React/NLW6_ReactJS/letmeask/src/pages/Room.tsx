@@ -11,11 +11,59 @@ type RoomParams = {
   id: string;
 };
 
+type FirebaseQuestions = Record<string, {
+    author: {
+        name: string;
+        avatar: string;
+    }
+
+    content: string;
+    isAnswered: boolean;
+    isHighlighted: boolean;
+}>
+
+type Question = {
+    id: string;
+    author: {
+        name: string;
+        avatar: string;
+    }
+
+    content: string;
+    isAnswered: boolean;
+    isHighlighted: boolean;
+}
+
 export const Room = () => {
   const params = useParams<RoomParams>();
   const [newQuestion, setNewQuestion] = React.useState("");
   const roomId = params.id;
   const { user } = useAuth();
+  const [questions, setQuestions] =React.useState<Question[]>([]); //estado do tipo array de Question
+  const [title, setTitle] = React.useState('');
+
+  React.useEffect(() => {
+    const roomRef = database.ref(`rooms/${roomId}`);
+
+    //segundo a documentação do firebase (NLW episódio 3), estratégia de event listener de javascript
+    //room.once -> buscar um item, room.on -> mais que um item
+    roomRef.on('value', room => {
+        const databaseRoom = room.val();
+        const firebaseQuestions: FirebaseQuestions = databaseRoom.questions ?? {};
+        const parsedQuestions = Object.entries(firebaseQuestions).map(([key, value]) => {
+            return {
+                id: key,
+                content: value.content,
+                author: value.author,
+                isAnswered: value.isAnswered,
+                isHighlighted: value.isHighlighted,
+            }
+        });
+
+        setQuestions(parsedQuestions);
+        setTitle(databaseRoom.title);
+    });
+  }, [roomId]); //sempre que o roomID mudar, o código dentro de useEffect irá repetir-se
 
   const handleSendQuestion = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -55,8 +103,8 @@ export const Room = () => {
 
       <main>
         <div className="room-title">
-          <h1>Sala React</h1>
-          <span>Número de perguntas</span>
+          <h1>Sala: {title}</h1>
+          {questions.length > 0 && <span>{questions.length} pergunta(s)</span>}
         </div>
 
         <form onSubmit={handleSendQuestion}>
@@ -82,6 +130,8 @@ export const Room = () => {
             </Button>
           </div>
         </form>
+
+        {JSON.stringify(questions)}
       </main>
     </div>
   );
